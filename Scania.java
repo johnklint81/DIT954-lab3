@@ -1,11 +1,15 @@
 import java.awt.*;
 
-public class Scania extends Truck {
+public final class Scania extends Truck {
 
   private final TruckBed truckBed;
 
-  protected Scania() {
-    super(2, 100, Color.WHITE, "Scania");
+  public Scania() {
+    this(Vec2.ZERO);
+  }
+
+  public Scania(Vec2 startOffset) {
+    super(2, 100, Color.WHITE, "Scania", startOffset);
     truckBed = new TruckBed();
   }
 

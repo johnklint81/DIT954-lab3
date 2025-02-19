@@ -19,11 +19,12 @@ public abstract class MotorVehicle implements Movable {
     // Constructor, maybe we should have more fields in this one?
     // I don't like that the subclasses initialises nrDoors, enginePower, etc,
     // to hard-coded values.
-    protected MotorVehicle(int nrDoors, double enginePower, Color color, String modelName) {
+    protected MotorVehicle(int nrDoors, double enginePower, Color color, String modelName, Vec2 startOffset) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
+        pos.add(startOffset);
         stopEngine();
     }
 
@@ -40,6 +41,10 @@ public abstract class MotorVehicle implements Movable {
         } else {
             throw new IllegalStateException("Cannot move in current state");
         }
+    }
+
+    public Vec2 getPosition() {
+        return pos;
     }
 
     // We could use radians below if we wanted to

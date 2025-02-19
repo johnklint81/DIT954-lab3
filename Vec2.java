@@ -4,6 +4,8 @@ public final class Vec2 {
     private double x;
     private double y;
 
+    public static Vec2 ZERO = new Vec2(0, 0);
+
     public Vec2(double x, double y) {
         this.x = x;
         this.y = y;
@@ -26,6 +28,10 @@ public final class Vec2 {
     public void add(double x, double y) {
         this.x += x;
         this.y += y;
+    }
+
+    public void add(Vec2 offset) {
+        add(offset.x(), offset.y());
     }
 
     public Vec2 copy() {

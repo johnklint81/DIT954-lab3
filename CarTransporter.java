@@ -10,7 +10,11 @@ public class CarTransporter extends Truck {
   private final int maxCars;
 
   public CarTransporter(int maxCars) {
-    super(2, 200, Color.BLUE, "CarTransporter");
+    this(maxCars, Vec2.ZERO);
+  }
+
+  public CarTransporter(int maxCars, Vec2 startOffset) {
+    super(2, 200, Color.BLUE, "CarTransporter", startOffset);
     this.ramp = new Ramp();
     this.loadedCars = new ArrayDeque<>();
     this.maxCars = maxCars;
