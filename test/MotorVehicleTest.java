@@ -7,11 +7,11 @@ class MotorVehicleTest {
     @Test
     void move() {
         MotorVehicle saab = new Saab95();
-        double initialX = saab.getPos().x();
-        double initialY = saab.getPos().y();
+        double initialX = saab.getPos().getX();
+        double initialY = saab.getPos().getY();
         saab.move();
-        assertEquals(initialX, saab.getPos().x());
-        assertEquals(initialY, saab.getPos().y());
+        assertEquals(initialX, saab.getPos().getX());
+        assertEquals(initialY, saab.getPos().getX());
     }
 
     @Test
@@ -57,8 +57,8 @@ class MotorVehicleTest {
     @Test
     void getCurrentPosition() {
         MotorVehicle saab = new Saab95();
-        assertEquals(0, saab.getPos().x());
-        assertEquals(0, saab.getPos().y());
+        assertEquals(0, saab.getPos().getX());
+        assertEquals(0, saab.getPos().getY());
     }
 
     @Test

@@ -36,8 +36,8 @@ public class MotorVehicleTransporterTest {
     void testLoadCarWhenClose() {
         transporter.lowerRamp();
         transporter.loadCar(volvo);
-        assertEquals(transporter.getPos().x(), volvo.getPos().x(), 0.001);
-        assertEquals(transporter.getPos().y(), volvo.getPos().y(), 0.001);
+        assertEquals(transporter.getPos().getX(), volvo.getPos().getX(), 0.001);
+        assertEquals(transporter.getPos().getY(), volvo.getPos().getY(), 0.001);
     }
 
     @Test
@@ -60,10 +60,10 @@ public class MotorVehicleTransporterTest {
         transporter.lowerRamp();
         transporter.loadCar(volvo);
         transporter.loadCar(saab);
-        
+
         MotorVehicle unloadedCar = transporter.unloadCar();
         assertEquals(saab, unloadedCar);
-        
+
         unloadedCar = transporter.unloadCar();
         assertEquals(volvo, unloadedCar);
     }
@@ -73,7 +73,7 @@ public class MotorVehicleTransporterTest {
         transporter.lowerRamp();
         transporter.loadCar(volvo);
         transporter.raiseRamp();
-        
+
         assertThrows(IllegalStateException.class, () -> transporter.unloadCar());
     }
 
@@ -82,11 +82,11 @@ public class MotorVehicleTransporterTest {
         transporter.lowerRamp();
         transporter.loadCar(volvo);
         transporter.raiseRamp();
-        
+
         transporter.gas(0.5);
         transporter.move();
-        
-        assertEquals(transporter.getPos().x(), volvo.getPos().x(), 0.001);
-        assertEquals(transporter.getPos().y(), volvo.getPos().y(), 0.001);
+
+        assertEquals(transporter.getPos().getX(), volvo.getPos().getX(), 0.001);
+        assertEquals(transporter.getPos().getY(), volvo.getPos().getY(), 0.001);
     }
 }

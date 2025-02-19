@@ -4,8 +4,8 @@ public abstract class MotorVehicle implements Movable {
     // We need to discuss whether we want to use interfaces also...
     // Inheritance is nice here because the subclasses share a lot of functionality
 
-    private final Vec2 pos = new Vec2(0, 0); // (x, y)
-    private double currentDirection = 0; // Angle in degrees (from unit vector perspective)
+    private Vec2 pos; // (x, y)
+    private double currentDirection = 0; // Angle in radians (from unit vector perspective)
     private final int nrDoors; // Number of doors on the car
     private final double enginePower; // Engine power of the car
     private double currentSpeed = 0; // The current speed of the car
@@ -24,6 +24,7 @@ public abstract class MotorVehicle implements Movable {
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
+        this.pos = new Vec2(0, 0);
         stopEngine();
     }
 
@@ -33,24 +34,19 @@ public abstract class MotorVehicle implements Movable {
     @Override
     public void move() {
         if (canMove()) {
-            double direction = Math.atan2(pos.getY(), pos.getX());
             double positionChange = getCurrentSpeed();
-
-            pos.add(positionChange * Math.cos(direction), positionChange * Math.sin(direction));
-        } else {
-            throw new IllegalStateException("Cannot move in current state");
+            pos.add(positionChange * Math.cos(currentDirection), positionChange * Math.sin(currentDirection));
         }
     }
 
-    // We could use radians below if we wanted to
     @Override
     public void turnLeft(double angle) {
-        currentDirection = (currentDirection + angle) % 360;
+        currentDirection = (currentDirection + angle);
     }
 
     @Override
     public void turnRight(double angle) {
-        currentDirection = (currentDirection - angle) % 360;
+        currentDirection = (currentDirection - angle);
     }
 
     public int getNrDoors() {
@@ -71,6 +67,10 @@ public abstract class MotorVehicle implements Movable {
 
     public Vec2 getPos() {
         return pos;
+    }
+
+    public void setPos(Vec2 newPos) {
+        pos = newPos;
     }
 
     public Color getColor() {
