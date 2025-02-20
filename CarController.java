@@ -29,14 +29,9 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-
-//        cc.cars.add(new Volvo240());
-//        cc.cars.add(new Saab95());
-//        cc.cars.add(new Scania());
-
         cc.cars.add(new Volvo240());
-        cc.cars.add(new Volvo240());
-        cc.cars.add(new Volvo240());
+        cc.cars.add(new Saab95());
+        cc.cars.add(new Scania());
 
         for (int i = 0; i < cc.cars.size(); i++) {
             cc.cars.get(i).setPos(new Vec2(0, i * 100));
@@ -56,8 +51,6 @@ public class CarController {
         public void actionPerformed(ActionEvent e) {
             for (MotorVehicle car : cars) {
                 car.move();
-                int x = (int) Math.round(car.getPos().getX());
-                int y = (int) Math.round(car.getPos().getY());
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
